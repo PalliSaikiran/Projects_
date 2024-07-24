@@ -1,0 +1,31 @@
+<% layout("/layouts/boilerplate.ejs") %>
+    <div class="row">
+        <div>
+            <div class="col-8 offset-2 mt-3 ">
+                <h3>SignUp for NestVibes</h3>
+                <form action="/signup" method="post" class="needs-validation" novalidate >
+                    <div class="mb-3">
+                        <label for="username" class="form-label">UserName</label>
+                        <input class="form-control" type="text" placeholder="Enter username" name="username" id="username" required  >
+                        <div class="invalid-feedback">
+                            Enter a valid username
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input class="form-control"  type="email" name="email" placeholder="Enter email"
+                        id="email" required >
+                        <div class="invalid-feedback">Enter a valid email</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input class="form-control" type="password" name="password" placeholder="Enter Password" id="password" required>
+                        <div class="invalid-feedback">Enter a valid Password</div>
+                    </div>
+                    <button class="btn btn-dark add-btn">SignUp</button>
+                    <br><br>
+                </form>
+            </div>
+        </div>
+       
+    </div>
