@@ -1,3 +1,8 @@
+if (process.env.NODE_ENV != "production") {
+  require('dotenv').config()
+}
+
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -11,6 +16,8 @@ const flash = require("connect-flash");
 const passport = require("passport")
 const localStrategy = require("passport-local")
 const User = require("./models/user.js")
+const multer  = require('multer')
+// const Mongo_URL = 'mongodb://127.0.0.1:27017/NestVibes'
 
 var methodOverride = require('method-override')
 app.use(methodOverride('_method'));
@@ -20,8 +27,9 @@ app.set("view engine","ejs");
 app.engine('ejs', ejsMate);
 app.use(express.urlencoded({extended:true}));
 var session = require('express-session')
+const MongoStore = require('connect-mongo');
 
-
+const dbUrl = process.env.ATLASDB_URL
 
 main()
 .then(()=>{
@@ -30,20 +38,35 @@ main()
 .catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/NestVibes');
+  await mongoose.connect(dbUrl);
 }
 
 app.listen(8080,()=>{
     console.log("listening to port 8080")
 })
 
+const store =  MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto:{
+    secret:process.env.SECRET
+  },
+  touchAfter:24*3600,
+})
+
+store.on('error',()=>{
+  console.log("error on mongo session store",err)
+})
+
 app.use(session({
-  secret: 'keyboard cat',
+  store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false } // Set to false for development
 }));
 app.use(flash())
+
+
 
 app.use(passport.initialize());
 app.use(passport.session())

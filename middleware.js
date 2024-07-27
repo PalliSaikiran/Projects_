@@ -54,18 +54,10 @@ module.exports.isAuthor = async (req, res, next) => {
 
 
 module.exports.validateListing = (req, res, next) => {
-    // Log the listings schema and request body for debugging
-    console.log("Listings Schema:", listingsSchema.describe()); // Log schema details for debugging
-    console.log("Request Body:", req.body);
-
-    // Validate the request body against the listings schema
     const { error } = listingsSchema.validate(req.body);
-
     if (error) {
-        // If there is a validation error, pass it to the error handler middleware
-        return next(new ExpressError(400, error.details[0].message)); // Providing specific error message
+        return next(new ExpressError(400, error.details[0].message));
     } else {
-        // If validation succeeds, move to the next middleware
         next();
     }
 };

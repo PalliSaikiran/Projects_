@@ -4,24 +4,25 @@
             <div class="col-8 offset-2 mt-3 ">
                 <!-- <br><br> -->
                 <h3>Create a New Listing</h3>
-                <form action="/listings" method="post" class="needs-validation" novalidate >
+                <form action="/listings" method="post" class="needs-validation" enctype="multipart/form-data" novalidate >
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input class="form-control" type="text" placeholder="Enter title" name="title" id="title" required  >
                         <div class="invalid-feedback">
                             Enter a title
                         </div>
-                    </div>
+                    </div> 
+                   
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" name="description" placeholder="Enter description"
                         id="description" required ></textarea>
                         <div class="invalid-feedback">Enter a short description</div>
                     </div>
+                   
                     <div class="mb-3">
-                        <label for="image" class="form-label">Image URL</label>
-                        <input class="form-control" type="text" name="image" placeholder="Enter image URL/link" id="image">
-                        
+                        <label for="image" class="form-label">Image </label>
+                        <input class="form-control" type="file" name="image" placeholder="Enter image URL/link" id="image">
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-4">

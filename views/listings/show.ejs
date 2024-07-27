@@ -6,11 +6,11 @@
         <%= listing.title %>
       </h2>
       <div class="card card-listing">
-        <img src="<%= listing.image %>" class="card-img-top show-img " alt="Listing image">
+        <img src="<%= listing.image.url %>" class="card-img-top show-img " alt="Listing image">
         <div class="card-body">
           <!-- <h5 class="card-title">Card title</h5> -->
           <p class="card-text">
-             <h5> Owned By <%= listing.owner.username%></h5>
+             <h5> Owned By <%=  listing.owner.username%></h5>
               <%= listing.description %> <br>
                 <%= listing.price.toLocaleString("en-IN") %>&#8377;
                 <br> 
