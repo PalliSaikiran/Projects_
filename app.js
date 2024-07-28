@@ -98,9 +98,9 @@ app.use("/listings/", listings);
 app.use("/listings/:id/reviews", reviews);
 app.use("/",users)
 
-app.get("/",(req,res)=>{
-  res.send("working")
-})
+// app.get("/",(req,res)=>{
+//   res.send("working")
+// })
 
 app.all("*",(req,res,next)=>{
   next(new ExpressError(404,"page not found!! "))
