@@ -12,7 +12,7 @@ const reviewController  = require('../controllers/review.js');
 
 
 // Reviews POST request
-router.post("/",isLoggedIn ,wrapAsync(reviewController.createReview));
+router.post("/",isLoggedIn,wrapAsync(reviewController.createReview),validateReview );
 
 
 // Delete review
